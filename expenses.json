@@ -1,0 +1,17 @@
+[
+    {
+        "description": "gas",
+        "category": "gas",
+        "amount": 85.03
+    },
+    {
+        "description": "gas",
+        "category": "gas",
+        "amount": 85.0
+    },
+    {
+        "description": "lunch",
+        "category": "food",
+        "amount": 56.6
+    }
+]

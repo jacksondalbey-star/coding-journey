@@ -3,16 +3,32 @@ def show_menu():
     print("1. Add an expense")
     print("2. View all expenses")
     print("3. View total spending")
-    print("4. Exit")
+    print("4. Delete an expense")
+    print("5. Exit")
+    print("6. View totals by category")
+
+import json
+
+DATA_FILE = "expenses.json"
+def load_expenses():
+    try:
+        with open(DATA_FILE, "r") as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
 
 
-expenses = []
+expenses = load_expenses()
+
+def save_expenses():
+    with open(DATA_FILE, "w") as file:
+        json.dump(expenses, file, indent=4)
+
 
 
 def add_expense():
     description = input("Expense description: ")
     category = input("Category: ")
-
     while True:
         try:
             amount = float(input("Amount: $"))
@@ -27,7 +43,22 @@ def add_expense():
         "category": category,
         "amount": amount,
     })
+    save_expenses()
     print("Expense added successfully!")
+
+def delete_expense():
+    view_expenses()
+
+    if not expenses:
+        return
+
+    try:
+        number = int(input("Enter the expense number to delete: "))
+        deleted = expenses.pop(number - 1)
+        save_expenses()
+        print(f"Deleted: {deleted['description']}")
+    except (ValueError, IndexError):
+        print("Please enter a valid expense number.")
 
 
 def view_expenses():
@@ -46,7 +77,24 @@ def view_expenses():
 def view_total_spending():
     total = sum(expense["amount"] for expense in expenses)
     print(f"Total spending: ${total:.2f}")
+def view_category_totals():
+    category_totals = {}
 
+    for expense in expenses:
+        category = expense["category"]
+        amount = expense["amount"]
+
+        if category in category_totals:
+            category_totals[category] += amount
+        else:
+            category_totals[category] = amount
+
+    if not category_totals:
+        print("No expenses have been added.")
+        return
+
+    for category, total in category_totals.items():
+        print(f"{category}: ${total:.2f}")
 
 while True:
     show_menu()
@@ -58,10 +106,14 @@ while True:
     elif choice == "3":
         view_total_spending()
     elif choice == "4":
+        delete_expense()
+    elif choice == "5":
         print("Expense tracker closed.")
         break
+    elif choice == "6":
+        view_category_totals()
     else:
-        print("Please choose an option from 1 to 4.")
+        print("Please choose an option from 1 to 6.")
     
   
 
