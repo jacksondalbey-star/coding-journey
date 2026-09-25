@@ -6,21 +6,26 @@ print("Welcome, Jackson! Let's learn Python.")
 while True:
     try:
         bill = float(input("Enter the bill amount: $"))
-        break
+        if bill > 0:
+            break
+        print("The bill must be greater than $0.")
     except ValueError:
         print("Please enter a valid number.")
 while True:
     try:
         tip_percent = float(input("Tip percentage? Enter 15 for 15%: "))
-        break
+        if tip_percent >= 0:
+            break
+        print("Tip percentage cannot be negative.")
     except ValueError:
         print("Please enter a valid tip percentage.")
-
 tip = bill * tip_percent / 100
 while True:
     try:
         tax_percent = float(input("Sales tax percentage? Enter 7 for 7%: "))
-        break
+        if tax_percent >= 0:
+            break
+        print("Sales tax percentage cannot be negative.")
     except ValueError:
         print("Please enter a valid sales-tax percentage.")
 
