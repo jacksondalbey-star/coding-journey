@@ -10,5 +10,8 @@ print(f"Tip: ${tip:.2f}")
 total = bill + tip
 print(f"Total including tip: ${total:.2f}")
 people = int(input("How many people are splitting the bill? "))
-per_person = total / people
-print(f"Each person pays: ${per_person:.2f}")
+if people > 0:
+    per_person = total / people
+    print(f"Each person pays: ${per_person:.2f}")
+else:
+    print("Please enter at least 1 person.")
