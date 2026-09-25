@@ -45,3 +45,14 @@ while True:
 
 per_person = total / people
 print(f"Each person pays: ${per_person:.2f}")
+print("\n" + "=" * 32)
+print("          BILL SUMMARY")
+print("=" * 32)
+print(f"Customer:          {name}")
+print(f"Original bill:     ${bill:.2f}")
+print(f"Tip:               ${tip:.2f}")
+print(f"Sales tax:         ${tax:.2f}")
+print(f"Final total:       ${total:.2f}")
+print(f"Number of people:  {people}")
+print(f"Each person pays:  ${per_person:.2f}")
+print("=" * 32)
