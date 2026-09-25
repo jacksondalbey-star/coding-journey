@@ -35,7 +35,22 @@ Run it with:
 ```bash
 python3 expense_tracker.py
 ```
+### Inventory Management System
 
+A command-line inventory system that:
+
+- Adds and removes products
+- Tracks product quantities and prices
+- Searches by product name or ID
+- Updates inventory quantities
+- Detects low-stock products
+- Prevents duplicate product IDs
+- Saves inventory data in JSON
+
+Run it with:
+
+```bash
+python3 inventory_manager.py
 ## Technologies
 
 - Python
